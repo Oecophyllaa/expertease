@@ -57,7 +57,7 @@ class ServiceController extends Controller
 	 */
 	public function edit($id)
 	{
-		//
+		return view('pages.dashboard.service.edit');
 	}
 
 	/**

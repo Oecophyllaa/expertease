@@ -48,6 +48,7 @@
                           loading="lazy" />
                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                       </div>
+
                       <div>
                         <a href="/dashboard/services/details.php" class="font-medium text-black">
                           Design WordPress <br>E-Commerce Modules
@@ -65,7 +66,7 @@
                     Active
                   </td>
                   <td class="px-1 py-5 text-sm">
-                    <a href="/dashboard/services/edit.php" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                    <a href="{{ route('member.service.edit', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                       Edit Service
                     </a>
                   </td>
@@ -79,6 +80,7 @@
                           loading="lazy" />
                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                       </div>
+
                       <div>
                         <a href="/dashboard/services/details.php" class="font-medium text-black">
                           Fix Any Issue on Your <br>
@@ -97,11 +99,12 @@
                     Active
                   </td>
                   <td class="px-1 py-5 text-sm">
-                    <a href="/dashboard/services/edit.php" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                    <a href="{{ route('member.service.edit', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                       Edit Service
                     </a>
                   </td>
                 </tr>
+
                 <tr class="text-gray-700">
                   <td class="w-2/6 px-1 py-5">
                     <div class="flex items-center text-sm">
@@ -110,6 +113,7 @@
                           loading="lazy" />
                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                       </div>
+
                       <div>
                         <a href="/dashboard/services/details.php" class="font-medium text-black">
                           Create a UI Design <br>
@@ -128,7 +132,7 @@
                     Active
                   </td>
                   <td class="px-1 py-5 text-sm">
-                    <a href="/dashboard/services/edit.php" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                    <a href="{{ route('member.service.edit', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                       Edit Service
                     </a>
                   </td>

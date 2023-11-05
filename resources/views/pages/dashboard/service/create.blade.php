@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <!-- breadcrumb -->
+    <!-- ./breadcrumb -->
     <nav class="mx-10 mt-8 text-sm" aria-label="Breadcrumb">
       <ol class="inline-flex p-0 list-none">
         <li class="flex items-center">
@@ -32,12 +32,13 @@
         </li>
       </ol>
     </nav>
+    <!-- ./end-breadcrumb -->
 
     <section class="container px-6 mx-auto mt-5">
       <div class="grid gap-5 md:grid-cols-12">
         <main class="col-span-12 p-4 md:pt-0">
           <div class="px-2 py-2 mt-2 bg-white rounded-xl">
-            <!-- ./start-form -->
+            <!-- ./form -->
             <form action="#" method="POST">
               <div class="">
                 <div class="px-4 py-5 sm:p-6">
@@ -58,16 +59,20 @@
 
                     <div class="col-span-6">
                       <label for="service-name" class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service kamu</label>
+
                       <p class="block mb-3 text-sm text-gray-700">
                         Hal apa aja yang didapakan dari service kamu?
                       </p>
+
                       <input placeholder="Keunggulan 1" type="text" name="advantages[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
                       <input placeholder="Keunggulan 2" type="text" name="advantages[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
                       <input placeholder="Keunggulan 3" type="text" name="advantages[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+
                       <div id="newServicesRow"></div>
+
                       <button type="button"
                         class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         id="addServicesRow">
@@ -101,13 +106,16 @@
 
                     <div class="col-span-6">
                       <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Thumbnail Service Feeds</label>
+
                       <input placeholder="Keunggulan 1" type="file" name="thumbnails[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
                       <input placeholder="Keunggulan 2" type="file" name="thumbnails[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
                       <input placeholder="Keunggulan 3" type="file" name="thumbnails[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+
                       <div id="newThumbnailRow"></div>
+
                       <button type="button"
                         class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         id="addThumbnailRow">
@@ -117,13 +125,16 @@
 
                     <div class="col-span-6">
                       <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Keunggulan kamu</label>
+
                       <input placeholder="Keunggulan 1" type="text" name="services[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
                       <input placeholder="Keunggulan 2" type="text" name="services[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
                       <input placeholder="Keunggulan 3" type="text" name="services[]" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+
                       <div id="newAdvantagesRow"></div>
+
                       <button type="button"
                         class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         id="addAdvantagesRow">
@@ -140,9 +151,12 @@
                     </div>
 
                     <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Tagline <span
-                          class="text-gray-400">(Optional)</span></label>
+                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Tagline
+                        <span class="text-gray-400">(Optional)</span>
+                      </label>
+
                       <div id="newTaglineRow"></div>
+
                       <button type="button"
                         class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         id="addTaglineRow">
@@ -157,6 +171,7 @@
                     class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
                     Cancel
                   </button>
+
                   <button type="submit"
                     class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                     Create Service
