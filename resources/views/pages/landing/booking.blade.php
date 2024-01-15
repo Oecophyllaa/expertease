@@ -38,8 +38,7 @@
           d="M245.48 186.21C243.94 186.21 242.56 185.96 241.34 185.46C240.12 184.96 239.14 184.22 238.4 183.24C237.68 182.26 237.3 181.08 237.26 179.7H242.72C242.8 180.48 243.07 181.08 243.53 181.5C243.99 181.9 244.59 182.1 245.33 182.1C246.09 182.1 246.69 181.93 247.13 181.59C247.57 181.23 247.79 180.74 247.79 180.12C247.79 179.6 247.61 179.17 247.25 178.83C246.91 178.49 246.48 178.21 245.96 177.99C245.46 177.77 244.74 177.52 243.8 177.24C242.44 176.82 241.33 176.4 240.47 175.98C239.61 175.56 238.87 174.94 238.25 174.12C237.63 173.3 237.32 172.23 237.32 170.91C237.32 168.95 238.03 167.42 239.45 166.32C240.87 165.2 242.72 164.64 245 164.64C247.32 164.64 249.19 165.2 250.61 166.32C252.03 167.42 252.79 168.96 252.89 170.94H247.34C247.3 170.26 247.05 169.73 246.59 169.35C246.13 168.95 245.54 168.75 244.82 168.75C244.2 168.75 243.7 168.92 243.32 169.26C242.94 169.58 242.75 170.05 242.75 170.67C242.75 171.35 243.07 171.88 243.71 172.26C244.35 172.64 245.35 173.05 246.71 173.49C248.07 173.95 249.17 174.39 250.01 174.81C250.87 175.23 251.61 175.84 252.23 176.64C252.85 177.44 253.16 178.47 253.16 179.73C253.16 180.93 252.85 182.02 252.23 183C251.63 183.98 250.75 184.76 249.59 185.34C248.43 185.92 247.06 186.21 245.48 186.21Z"
           fill="white" />
         <defs>
-          <filter id="filter0_d" x="360" y="110" width="130" height="130" filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB">
+          <filter id="filter0_d" x="360" y="110" width="130" height="130" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
             <feOffset />
@@ -51,8 +50,7 @@
           <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
             <use xlink:href="#image1" transform="translate(0 -0.00505051) scale(0.002)" />
           </pattern>
-          <filter id="filter1_d" x="0" y="111" width="130" height="130" filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB">
+          <filter id="filter1_d" x="0" y="111" width="130" height="130" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
             <feOffset />
@@ -78,7 +76,8 @@
         our Freelancer through WhatsApp
       </p>
 
-      <a href="http://wa.me/628123456789" class="bg-serv-button text-white text-md font-medium py-4 w-80 my-2 rounded-2xl text-center inline-block">
+      <a href="http://wa.me/628123456789" target="_blank"
+        class="bg-serv-button text-white text-md font-medium py-4 w-80 my-2 rounded-2xl text-center inline-block">
         Continue to Chat
       </a>
 

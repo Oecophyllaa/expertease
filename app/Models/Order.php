@@ -50,6 +50,6 @@ class Order extends Model
 
 	public function order_status()
 	{
-		return $this->belongsTo('App\Models\OrderStatus', 'order_Status_id', 'id');
+		return $this->belongsTo('App\Models\OrderStatus', 'order_status_id', 'id');
 	}
 }

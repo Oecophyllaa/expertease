@@ -38,38 +38,53 @@
       <div class="grid gap-5 md:grid-cols-12">
         <main class="col-span-12 p-4 md:pt-0">
           <div class="px-2 py-2 mt-2 bg-white rounded-xl">
-            <!-- ./form -->
-            <form action="#" method="POST">
+            <!-- form -->
+            <form action="{{ route('member.service.update', [$service->id]) }}" method="POST" enctype="multipart/form-data">
+              @csrf @method('PUT')
+
               <div class="">
                 <div class="px-4 py-5 sm:p-6">
                   <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Judul Service</label>
+                      <label for="title" class="block mb-3 font-medium text-gray-700 text-md">Judul Service</label>
 
-                      <input placeholder="Service apa yang ingin kamu tawarkan?" type="text" name="service-name" id="service-name"
-                        autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                    </div>
-                    <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Service</label>
+                      <input placeholder="Service apa yang ingin kamu tawarkan?" type="text" name="title" id="title" autocomplete="title"
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                        value="{{ $service->title ?? '' }}" required />
 
-                      <input placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="service-name" id="service-name"
-                        autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                    </div>
+                      @if ($errors->has('title'))
+                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('title') }}</p>
+                      @endif
+                    </div><!-- / field:title -->
+
                     <div class="col-span-6">
-                      <label for="service-name" class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service kamu</label>
+                      <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Service</label>
+
+                      <input placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="description" id="description"
+                        autocomplete="description"
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                        value="{{ $service->description ?? '' }}" required />
+
+                      @if ($errors->has('description'))
+                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
+                      @endif
+                    </div><!-- / field:description -->
+
+                    <div class="col-span-6">
+                      <label for="advantage-service" class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service kamu</label>
 
                       <p class="block mb-3 text-sm text-gray-700">
                         Hal apa aja yang didapakan dari service kamu?
                       </p>
 
-                      <input placeholder="Keunggulan 1" type="text" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                      <input placeholder="Keunggulan 2" type="text" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                      <input placeholder="Keunggulan 3" type="text" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+                      @forelse ($advantage_service as $advantage_item)
+                        <input placeholder="Keunggulan Service" type="text" name="{{ 'advantage-services[' . $advantage_item->id . ']' }}"
+                          id="advantage-services" autocomplete="advantage-services"
+                          class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          value="{{ $advantage_item->advantage ?? '' }}" required />
+                      @empty
+                        {{-- empty --}}
+                      @endforelse
 
                       <div id="newServicesRow"></div>
 
@@ -78,41 +93,63 @@
                         id="addServicesRow">
                         Tambahkan Keunggulan +
                       </button>
-                    </div>
+                    </div><!-- / field:advantage_service -->
 
                     <div class="col-span-6 -mb-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service & Jumlah Revisi</label>
+                      <label for="estimation & revision" class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service & Jumlah Revisi</label>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
-                      <select id="estimation" name="estimation" autocomplete="estimation"
-                        class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                      <select id="delivery_time" name="delivery_time" autocomplete="delivery_time"
+                        class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        required>
                         <option>Butuh Berapa hari service kamu selesai?</option>
+                        <option value="2" {{ $service->delivery_time == '2' ? 'selected' : '' }}>2 Hari</option>
+                        <option value="4" {{ $service->delivery_time == '4' ? 'selected' : '' }}>4 Hari</option>
+                        <option value="8" {{ $service->delivery_time == '8' ? 'selected' : '' }}>8 Hari</option>
+                        <option value="16" {{ $service->delivery_time == '16' ? 'selected' : '' }}>16 Hari</option>
+                        <option value="32" {{ $service->delivery_time == '32' ? 'selected' : '' }}>32 Hari</option>
                       </select>
-                    </div>
+                    </div><!-- / field:delivery_time -->
 
                     <div class="col-span-6 sm:col-span-3">
-                      <select id="estimation" name="estimation" autocomplete="estimation"
-                        class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                      <select id="revision_limit" name="revision_limit" autocomplete="revision_limit"
+                        class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        required>
                         <option>Maksimal Revisi service kamu</option>
+                        <option value="2" {{ $service->revision_limit == '2' ? 'selected' : '' }}>2 Revisi</option>
+                        <option value="5" {{ $service->revision_limit == '5' ? 'selected' : '' }}>5 Revisi</option>
+                        <option value="7" {{ $service->revision_limit == '7' ? 'selected' : '' }}>7 Revisi</option>
+                        <option value="10" {{ $service->revision_limit == '10' ? 'selected' : '' }}>10 Revisi</option>
+                        <option value="12" {{ $service->revision_limit == '12' ? 'selected' : '' }}>12 Revisi</option>
                       </select>
-                    </div>
+                    </div><!-- / field:revision_limit -->
 
                     <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Harga Service Kamu</label>
-                      <input placeholder="Total Harga Service Kamu" type="number" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                    </div>
+                      <label for="price" class="block mb-3 font-medium text-gray-700 text-md">Harga Service Kamu</label>
+
+                      <input placeholder="Total Harga Service Kamu" type="number" name="price" id="price" autocomplete="price"
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                        value="{{ $service->price ?? '' }}" required />
+                    </div><!-- / field:price -->
 
                     <div class="col-span-6">
                       <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Thumbnail Service Feeds</label>
 
-                      <input placeholder="Keunggulan 1" type="file" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                      <input placeholder="Keunggulan 2" type="file" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                      <input placeholder="Keunggulan 3" type="file" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+                      <div class="grid grid-cols lg:grid-cols-3 md:grid-cols-2 gap-4">
+                        @forelse ($thumbnail_service as $thumbnail_item)
+                          <div class="mb-2">
+                            <img src="{{ url(Storage::url($thumbnail_item->thumbnail)) }}" alt="thumbnail"
+                              class="inline object-cover w-20 h-20 rounded" for="choose" />
+
+                            <input placeholder="Thumbnail" type="file" name="{{ 'thumbnails[' . $thumbnail_item->id . ']' }}" id="thumbnails"
+                              autocomplete="thumbnails"
+                              class="block w-full py-3 pl-5 mt-3 border-gray-300 rounded-md shadow-sm focus:ring-green-500 sm:text-sm" />
+                          </div>
+                        @empty
+                          {{-- empty --}}
+                        @endforelse
+                      </div>
 
                       <div id="newThumbnailRow"></div>
 
@@ -121,16 +158,19 @@
                         id="addThumbnailRow">
                         Tambahkan Gambar +
                       </button>
-                    </div>
-                    <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Keunggulan kamu</label>
+                    </div><!-- / field:thumbnail_service -->
 
-                      <input placeholder="Keunggulan 1" type="text" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                      <input placeholder="Keunggulan 2" type="text" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                      <input placeholder="Keunggulan 3" type="text" name="service-name" id="service-name" autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+                    <div class="col-span-6">
+                      <label for="advantage-users" class="block mb-3 font-medium text-gray-700 text-md">Keunggulan kamu</label>
+
+                      @forelse ($advantage_user as $advantage_user_item)
+                        <input placeholder="Keunggulan Kamu" type="text" name="{{ 'advantage-users[' . $advantage_user_item->id . ']' }}"
+                          id="advantage-users" autocomplete="advantage-users"
+                          class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          value="{{ $advantage_user_item->advantage ?? '' }}" required />
+                      @empty
+                        {{-- empty --}}
+                      @endforelse
 
                       <div id="newAdvantagesRow"></div>
 
@@ -139,22 +179,35 @@
                         id="addAdvantagesRow">
                         Tambahkan Keunggulan +
                       </button>
-                    </div>
+                    </div><!-- / field:advantage_user -->
 
                     <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Note
+                      <label for="note" class="block mb-3 font-medium text-gray-700 text-md">Note
                         <span class="text-gray-400">(Optional)</span>
                       </label>
 
-                      <input placeholder="Hal yang ingin disampaikan oleh kamu?" type="text" name="service-name" id="service-name"
-                        autocomplete="service-name"
-                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-                    </div>
+                      <input placeholder="Hal yang ingin disampaikan oleh kamu?" type="text" name="note" id="note" autocomplete="note"
+                        class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                        value="{{ $service->note ?? '' }}" required />
+
+                      @if ($errors->has('note'))
+                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('note') }}</p>
+                      @endif
+                    </div><!-- / field:note -->
 
                     <div class="col-span-6">
-                      <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Tagline
+                      <label for="taglines" class="block mb-3 font-medium text-gray-700 text-md">Tagline
                         <span class="text-gray-400">(Optional)</span>
                       </label>
+
+                      @forelse ($tagline as $tagline_item)
+                        <input placeholder="Tagline" type="text" name="{{ 'taglines[' . $tagline_item->id . ']' }}" id="taglines"
+                          autocomplete="taglines"
+                          class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          value="{{ $tagline_item->tagline ?? '' }}" required />
+                      @empty
+                        {{-- empty --}}
+                      @endforelse
 
                       <div id="newTaglineRow"></div>
 
@@ -163,18 +216,20 @@
                         id="addTaglineRow">
                         Tambahkan Tagline +
                       </button>
-                    </div>
+                    </div><!-- / field:tagline -->
                   </div>
                 </div>
 
                 <div class="px-4 py-3 text-right sm:px-6">
-                  <button type="submit"
-                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                  <a href="{{ route('member.service.index') }}" type="button"
+                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                    onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved.')">
                     Cancel
-                  </button>
+                  </a>
 
                   <button type="submit"
-                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    onclick="return confirm('Are you sure want to submit this data ?')">
                     Save Changes
                   </button>
                 </div>
@@ -191,28 +246,13 @@
 @push('after-script')
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script type="text/javascript">
-    // add row
-    $("#addAdvantagesRow").click(function() {
-      var html = '';
-      html +=
-        '<input placeholder="Keunggulan" type="text" name="advantages[]" id="service-name" autocomplete="service-name" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">';
-
-      $('#newAdvantagesRow').append(html);
-    });
-
-    // remove row
-    $(document).on('click', '#removeAdvantagesRow', function() {
-      $(this).closest('#inputFormAdvantagesRow').remove();
-    });
-  </script>
-
+  <!-- Add Advantage Service Row -->
   <script type="text/javascript">
     // add row
     $("#addServicesRow").click(function() {
       var html = '';
       html +=
-        '<input placeholder="Keunggulan" type="text" name="services[]" id="service-name" autocomplete="service-name" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">';
+        '<input placeholder="Keunggulan Service" type="text" name="advantage_service[]" id="advantage_service" autocomplete="advantage_service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
       $('#newServicesRow').append(html);
     });
@@ -223,12 +263,30 @@
     });
   </script>
 
+  <!-- Add Advantage User Row -->
+  <script type="text/javascript">
+    // add row
+    $("#addAdvantagesRow").click(function() {
+      var html = '';
+      html +=
+        '<input placeholder="Keunggulan Kamu" type="text" name="advantage_user[]" id="advantage_user" autocomplete="advantage_user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+
+      $('#newAdvantagesRow').append(html);
+    });
+
+    // remove row
+    $(document).on('click', '#removeAdvantagesRow', function() {
+      $(this).closest('#inputFormAdvantagesRow').remove();
+    });
+  </script>
+
+  <!-- Add Tagline Row -->
   <script type="text/javascript">
     // add row
     $("#addTaglineRow").click(function() {
       var html = '';
       html +=
-        '<input placeholder="Keunggulan" type="text" name="tagline[]" id="service-name" autocomplete="service-name" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">';
+        '<input placeholder="Tagline" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
       $('#newTaglineRow').append(html);
     });
@@ -239,12 +297,13 @@
     });
   </script>
 
+  <!-- Add Thumbnail Service Row -->
   <script type="text/javascript">
     // add row
     $("#addThumbnailRow").click(function() {
       var html = '';
       html +=
-        '<input placeholder="Keunggulan 3" type="file" name="thumbnails[]" id="service-name" autocomplete="service-name" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">';
+        '<input placeholder="Thumbnail" type="file" name="thumbnail[]" id="thumbnail" autocomplete="thumbnail" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
       $('#newThumbnailRow').append(html);
     });
